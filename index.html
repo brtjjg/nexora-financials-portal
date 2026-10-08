@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexora Financials</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="financials.css">
+</head>
+<body>
+
+<!-- ═══════════ LOGIN SCREEN ═══════════ -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="logo-mark">N</div>
+      <div class="logo-text">
+        <div class="logo-title">NEXORA</div>
+        <div class="logo-sub">FINANCIALS</div>
+      </div>
+    </div>
+    <h1 class="login-heading">Staff Sign In</h1>
+    <p class="login-sub">Finance portal — authorized personnel only</p>
+
+    <div id="loginFlash"></div>
+
+    <form id="loginForm" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="loginEmail" required autocomplete="email" placeholder="you@nexora.academy">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="loginPassword" required autocomplete="current-password" placeholder="••••••••">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="loginBtn">
+        <span>Sign In</span>
+      </button>
+    </form>
+
+    <div class="login-footer">
+      <a href="https://nexora-e-academy.vercel.app" target="_blank" rel="noopener">← Back to Academy</a>
+    </div>
+  </div>
+  <div class="login-bg"></div>
+</div>
+
+<!-- ═══════════ MAIN APP ═══════════ -->
+<div id="app" class="app hidden">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-mark small">N</div>
+      <div>
+        <div class="brand-title">NEXORA</div>
+        <div class="brand-sub">FINANCIALS</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section">Overview</div>
+      <a class="nav-item" data-page="dashboard">
+        <span class="nav-icon">📊</span> Dashboard
+      </a>
+
+      <div class="nav-section">Contributors</div>
+      <a class="nav-item" data-page="contributors">
+        <span class="nav-icon">👥</span> Contributors
+      </a>
+      <a class="nav-item" data-page="ledger">
+        <span class="nav-icon">📒</span> Ledger
+      </a>
+
+      <div class="nav-section">Payouts</div>
+      <a class="nav-item" data-page="payouts">
+        <span class="nav-icon">💸</span> Payouts
+        <span class="nav-badge" id="pendingPayoutBadge">0</span>
+      </a>
+
+      <div class="nav-section">Reports</div>
+      <a class="nav-item" data-page="reports">
+        <span class="nav-icon">📈</span> Revenue Reports
+      </a>
+      <a class="nav-item" data-page="audit">
+        <span class="nav-icon">🔍</span> Audit Logs
+      </a>
+
+      <div class="nav-section">Config</div>
+      <a class="nav-item" data-page="revenue-config">
+        <span class="nav-icon">⚙️</span> Revenue Split
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="user-avatar" id="userAvatar">?</div>
+        <div class="user-info">
+          <div class="user-name" id="userName">Loading...</div>
+          <div class="user-role" id="userRole">—</div>
+        </div>
+      </div>
+      <button class="btn btn-outline btn-sm btn-block" onclick="handleLogout()">
+        Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN AREA -->
+  <main class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+        <h1 class="page-title" id="pageTitle">Dashboard</h1>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-chip" id="topbarChip">Signed in</div>
+      </div>
+    </header>
+
+    <div class="content" id="content">
+      <!-- Pages render here dynamically -->
+    </div>
+  </main>
+
+  <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+</div>
+
+<!-- ═══════════ MODAL ROOT ═══════════ -->
+<div id="modalRoot"></div>
+
+<!-- ═══════════ TOAST ROOT ═══════════ -->
+<div id="toastRoot" class="toast-root"></div>
+
+<script src="financials.js"></script>
+</body>
+</html>
